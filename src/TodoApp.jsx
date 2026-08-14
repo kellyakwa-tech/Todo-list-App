@@ -1,4 +1,6 @@
 import { useState } from "react";
+import './TodoApp.css'
+
 
 export default function Todoapp() {
     const [tasks, setTasks] = useState([])
@@ -46,8 +48,12 @@ function toggleTask(taskId){
     return (
     <div>
      <h1>To-do List App</h1>
+
+     <div className="taskform">
      <input type="text" placeholder="Type a task..." value={inputValue} onChange={handleInputChange}></input>
      <button onClick={addTask}>Add Task</button>
+       </div>
+
      <ul>
         {tasks.map((task) => {
             
@@ -55,7 +61,7 @@ function toggleTask(taskId){
                 <li key={task.id}>
                 <button onClick={() => deleteTask(task.id)}> Delete </button>  
                 <input type="checkbox" checked={task.done} onChange={() => toggleTask(task.id)} />
-                {task.text}
+                <span className={task.done ? 'completed' : ''}>{task.text}</span>
                 </li>
             )
         })}
